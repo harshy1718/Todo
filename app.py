@@ -2,13 +2,15 @@ import os
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_migrate import Migrate
+
 
 app = Flask(__name__)
 DATABASE_URL = os.environ.get('postgresql://${{PGUSER}}:${{POSTGRES_PASSWORD}}@${{RAILWAY_PRIVATE_DOMAIN}}:5432/${{PGDATABASE}}', 'sqlite:///todo.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
+migrate = Migrate(app, db)
 class Todo(db.Model):
     sno = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200), nullable = False)
