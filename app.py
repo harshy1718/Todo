@@ -4,8 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-db_path = os.path.join('/tmp', 'todo.db')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
+DATABASE_URL = os.environ.get('postgresql://${{PGUSER}}:${{POSTGRES_PASSWORD}}@${{RAILWAY_PRIVATE_DOMAIN}}:5432/${{PGDATABASE}}', 'sqlite:///todo.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
