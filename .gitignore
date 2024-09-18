@@ -1,0 +1,25 @@
+# Ignore virtual environment folder
+env/
+pyenv/
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+
+# Flask instance folder and environment variables
+instance/
+.env
+
+# Log files
+*.log
+
+# Ignore database file (optional if you don't want to commit it)
+todo
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
